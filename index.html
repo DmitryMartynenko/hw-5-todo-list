@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<head>
+    <meta charset="utf-8">
+    <script src="js.js"></script>
+    <link href=main.css rel=stylesheet>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="date"></div>
+        </div>
+        <div class="add-to-do">
+            <input type="text" id="input">
+        </div>
+
+        
+        <div class="content">
+
+            <div>
+                <p >NEW</p>
+            <ul id="list">
+            </div>
+
+            </ul>
+            <div>
+                <p >FINISHED</p>
+            <ul id="finished">
+
+            </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        var input = document.getElementById('input');
+        var list = document.getElementById('list');
+
+
+        input.addEventListener('keypress', addNewTask);
+
+        function addNewTask(event) {
+            if (event.keyCode == 13 && input.value !== '') {
+                // var itemtWrapper = document.createElement('span');
+                // itemtWrapper.classList.add('tskwrapp');
+                var item = document.createElement('li');
+                item.classList.add('item');
+
+                // itemtWrapper.appendChild(item);
+
+                var checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                item.appendChild(checkbox); // add checkbox to creating li
+
+                var textWrapper = document.createElement('span');
+                item.appendChild(textWrapper); // add into il new wrapper span
+                textWrapper.innerHTML = input.value; //put in to the wrapper(span))
+                // value of input field
+
+                checkbox.addEventListener('click', lineTrough)// check box clicked
+                function lineTrough() {
+                    if (checkbox.checked) {
+                        textWrapper.style.textDecoration = 'line-through';
+                        finished.appendChild(item)
+                        
+                        // textWrapper.classList.remove('nonchecked')
+                        // item.classList.add('checked')
+                    } else {
+                        textWrapper.style.textDecoration = 'none';
+                        list.appendChild(item); 
+                        // textWrapper.classList.remove('checked')
+                        // item.classList.add('nonchecked')
+                    }
+                    
+                    
+
+                };
+
+                var clearButton = document.createElement('i');
+                clearButton.classList.add('clearbutton');
+                clearButton.innerHTML = 'x';
+                clearButton.style.color = 'red';
+                item.appendChild(clearButton); // add into il new wrapper clear
+
+                clearButton.addEventListener('click', clearFunc)
+                function clearFunc() {
+                    this.parentNode.parentNode.removeChild(this.parentNode)
+                };
+
+                list.appendChild(item); // add il to ul
+                input.value = ''; // claer input after put the enter 
+
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
