@@ -5,78 +5,110 @@
 
 <head>
     <meta charset="utf-8">
-    <script src="js.js"></script>
+
     <link href=main.css rel=stylesheet>
 </head>
 
 <body>
     <div class="container">
         <div class="header">
-            <div class="date"></div>
+            <div id="date" class="date">Starting...</div>
         </div>
         <div class="add-to-do">
             <input type="text" id="input">
+            <input type="date" id="setDate">
         </div>
 
-        
+
         <div class="content">
 
             <div>
-                <p >NEW</p>
-            <ul id="list">
+                <p>NEW</p>
+                <ul id="list">
+                
             </div>
 
             </ul>
             <div>
-                <p >FINISHED</p>
-            <ul id="finished">
+                <p>FINISHED</p>
+                <ul id="finished">
 
-            </ul>
+                </ul>
             </div>
         </div>
     </div>
     <script>
 
         var input = document.getElementById('input');
+        input.value = 'Put Your task right here';
         var list = document.getElementById('list');
+        var finished = document.getElementById('finished')
+       
+        input.addEventListener('click', clearInput);
+        function clearInput(event) {
+            input.value = '';
+        }
+       
+        var date = document.getElementById('setDate')
 
 
         input.addEventListener('keypress', addNewTask);
 
         function addNewTask(event) {
             if (event.keyCode == 13 && input.value !== '') {
-                // var itemtWrapper = document.createElement('span');
-                // itemtWrapper.classList.add('tskwrapp');
                 var item = document.createElement('li');
                 item.classList.add('item');
 
-                // itemtWrapper.appendChild(item);
-
                 var checkbox = document.createElement('input');
                 checkbox.type = 'checkbox';
-                item.appendChild(checkbox); // add checkbox to creating li
+                item.appendChild(checkbox); 
+
+                var deadline = document.createElement('span')
+                
+                deadline.innerHTML = date.value
+                deadline.style.color = 'blue';
+                item.appendChild(deadline)
+                if (date.value === '' ) {
+                deadline.innerText = 'set deadline'
+            }
+
+             deadline.addEventListener('click', addDeadline); 
+           
+                 function addDeadline() {
+                     
+                    if (deadline.innerText == 'set deadline' && date.value == 0){
+                         alert('Set the deadline Date')
+                         deadline.innerText = ' tap here to set'
+                         deadline.style.color = 'crimson';
+                     } else {
+                     deadline.innerHTML = date.value
+                     date.value = 0;
+                     
+                    }
+                    
+                   
+             }
 
                 var textWrapper = document.createElement('span');
-                item.appendChild(textWrapper); // add into il new wrapper span
-                textWrapper.innerHTML = input.value; //put in to the wrapper(span))
-                // value of input field
+                item.appendChild(textWrapper); 
+                textWrapper.innerHTML = input.value; 
+                
 
-                checkbox.addEventListener('click', lineTrough)// check box clicked
+                checkbox.addEventListener('click', lineTrough)
                 function lineTrough() {
                     if (checkbox.checked) {
                         textWrapper.style.textDecoration = 'line-through';
+                        deadline.style.textDecoration = 'line-through';
                         finished.appendChild(item)
-                        
-                        // textWrapper.classList.remove('nonchecked')
-                        // item.classList.add('checked')
+                       
                     } else {
                         textWrapper.style.textDecoration = 'none';
-                        list.appendChild(item); 
-                        // textWrapper.classList.remove('checked')
-                        // item.classList.add('nonchecked')
+                        deadline.style.textDecoration = 'none';
+                        list.appendChild(item);
+
                     }
-                    
-                    
+
+
 
                 };
 
@@ -84,21 +116,20 @@
                 clearButton.classList.add('clearbutton');
                 clearButton.innerHTML = 'x';
                 clearButton.style.color = 'red';
-                item.appendChild(clearButton); // add into il new wrapper clear
+                item.appendChild(clearButton); 
 
                 clearButton.addEventListener('click', clearFunc)
                 function clearFunc() {
                     this.parentNode.parentNode.removeChild(this.parentNode)
                 };
 
-                list.appendChild(item); // add il to ul
-                input.value = ''; // claer input after put the enter 
+                list.appendChild(item); 
+                input.value = ''; 
+                date.value = ''; 
 
             }
-        }
-
     </script>
-
+    <script src="js.js"></script>
 </body>
 
 </html>

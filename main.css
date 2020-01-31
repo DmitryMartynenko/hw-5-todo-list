@@ -6,9 +6,11 @@ body{
 }
 
 .header{
-    width: 380px;
+    max-width:750px;
+    width: auto;
+    left: 5%;
     height:200px;
-    /* background-image: url(''); */
+    background-image: url('https://forexlis.ru/images/blog/kvazimodo-trading/kvazimodo-trading.jpg'); 
     background-size: 100% 200%;
     background-repeat: no-repeat;
     border-radius: 15px 15px 0 0;
@@ -26,29 +28,32 @@ body{
     position: absolute;
     bottom: 10px;
     left: 10px;
-    color: #FFF;
+    color: rgb(181, 202, 198);
     font-size: 25px;
     font-family: 'Titillium Web', sans-serif;
 }
 
 .item{
     width:auto;
-    height: 45px;
-    min-height: 45px;
+    height: 28px;
     position: relative;
     border-bottom: 1px solid rgba(0,0,0,0.1);
     list-style: none;
     padding: 0;
     margin: 0;
-    font-size: 25px;
+    font-size: 15px;
 }
 
 .content{
-    width:95%;
+    position: relative;
+    left: 5%;
+    widows: auto;
+    max-width:750px;
     height: 350px;
     max-height:350px;
     background-color: silver;
     overflow: auto;
+    margin: 0 ;
 }
 
 
@@ -56,5 +61,12 @@ body{
     font-size: 20px;
     padding: 2px 2px 2px 25px;
     border: dotted crimson 1px ;;
+    
+}
+
+#setDate{
+    font-size: 15px;
+    padding: 2px 2px 2px 25px;
+    border: dotted crimson 2px ;;
     
 }
